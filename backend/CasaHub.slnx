@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CasaHub.API/CasaHub.API.csproj" />
+    <Project Path="src/CasaHub.Application/CasaHub.Application.csproj" />
+    <Project Path="src/CasaHub.Domain/CasaHub.Domain.csproj" />
+    <Project Path="src/CasaHub.Infrastructure/CasaHub.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CasaHub.IntegrationTests/CasaHub.IntegrationTests.csproj" />
+    <Project Path="tests/CasaHub.UnitTests/CasaHub.UnitTests.csproj" />
+  </Folder>
+</Solution>

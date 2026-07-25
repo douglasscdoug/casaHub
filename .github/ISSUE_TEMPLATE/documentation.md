@@ -1,24 +1,36 @@
 ---
 name: 📚 Documentation
-about: Melhorar documentação
-title: "[DOC] "
+about: Criar ou atualizar documentação
+title: "[DOCS] "
 labels: documentation
 assignees: ''
 ---
 
 ## Objetivo
 
-Qual documentação precisa ser criada ou atualizada?
+Explique qual documentação precisa ser criada ou atualizada.
 
 ## Descrição
 
-Explique a alteração necessária.
+Detalhe o conteúdo esperado.
 
 ## Local
 
-Onde será alterado?
+Informe onde a documentação será criada ou alterada.
 
 - [ ] README
-- [ ] API
-- [ ] Arquitetura
+- [ ] docs/
+- [ ] Wiki
+- [ ] Swagger
 - [ ] Outro
+
+## Critérios de aceite
+
+- [ ] Conteúdo atualizado
+- [ ] Revisado
+- [ ] Links funcionando
+- [ ] Ortografia revisada
+
+## Observações
+
+Informações adicionais.

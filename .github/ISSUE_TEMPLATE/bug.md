@@ -1,31 +1,43 @@
 ---
-name: 🐛 Bug
-about: Reportar um problema
+name: 🐛 Bug Report
+about: Reportar um problema ou comportamento inesperado
 title: "[BUG] "
 labels: bug
 assignees: ''
 ---
 
-## Descrição do problema
+## Descrição
 
-Explique o erro encontrado.
+Descreva claramente o problema encontrado.
 
-## Como reproduzir
-
-Passos para reproduzir:
+## Passos para reproduzir
 
 1.
 2.
 3.
 
-## Resultado esperado
+## Comportamento esperado
 
-O que deveria acontecer?
+Descreva como deveria funcionar.
 
-## Resultado atual
+## Comportamento atual
 
-O que está acontecendo?
+Descreva o comportamento observado.
 
 ## Evidências
 
-Logs, prints ou informações adicionais.
+Adicione prints, logs ou mensagens de erro, se houver.
+
+## Ambiente
+
+- Sistema Operacional:
+- Navegador:
+- Backend:
+- Frontend:
+
+## Critérios de aceite
+
+- [ ] Bug reproduzido
+- [ ] Correção implementada
+- [ ] Testado
+- [ ] Sem regressões

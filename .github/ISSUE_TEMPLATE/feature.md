@@ -6,24 +6,48 @@ labels: feature
 assignees: ''
 ---
 
-## Objetivo
+## 🎯 Objetivo
 
 Descreva o objetivo desta funcionalidade.
 
-## Descrição
+## 📝 Descrição
 
 Explique o que precisa ser desenvolvido.
 
-## Critérios de aceite
+## 📋 Regras de negócio
 
-- [ ] 
-- [ ] 
-- [ ]
+Liste as regras que a funcionalidade deve respeitar.
 
-## Impactos
+- 
+- 
+- 
+
+## ✅ Critérios de aceite
+
+- [ ] Funcionalidade implementada conforme especificação
+- [ ] Regras de negócio atendidas
+- [ ] Testes realizados
+- [ ] Sem regressões identificadas
+
+## 🔧 Checklist técnico
+
+- [ ] Backend
+- [ ] Frontend
+- [ ] Banco de dados
+- [ ] API/Endpoints
+- [ ] Testes
+- [ ] Documentação
+
+> Marque apenas os itens aplicáveis.
+
+## 💥 Impactos
 
 Descreva possíveis impactos em outras partes do sistema.
 
-## Observações
+## 📎 Referências
+
+Links úteis, mockups, ADRs, documentação ou issues relacionadas.
+
+## 📝 Observações
 
 Informações adicionais.

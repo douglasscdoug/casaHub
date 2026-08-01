@@ -1,36 +1,13 @@
 using System.Text;
-using CasaHub.Application.Contracts.Security;
 using CasaHub.Infrastructure.Authentication;
-using CasaHub.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CasaHub.Infrastructure
+namespace CasaHub.API.Extensions
 {
-    public static class DependencyInjection
+    public static class AuthenticationExtensions
     {
-        public static IServiceCollection AddInfrastructure(
-            this IServiceCollection services, IConfiguration configuration
-        )
-        {
-            services.AddDbContext<CasaHubDbContext>(options =>
-            {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
-
-            services.AddAuthentication(configuration);
-
-            services.AddScoped<ITokenService, JwtTokenService>();
-
-            return services;
-        }
-
-        private static IServiceCollection AddAuthentication(
+        public static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services,
             IConfiguration configuration)
         {

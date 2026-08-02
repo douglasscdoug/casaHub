@@ -32,10 +32,12 @@ namespace CasaHub.Infrastructure
 
             services.AddScoped<IUserRepository, UserRepository>();
 
+            AddJwtAuthentication(services, configuration);
+
             return services;
         }
 
-        private static IServiceCollection AddAuthentication(
+        private static IServiceCollection AddJwtAuthentication(
             this IServiceCollection services,
             IConfiguration configuration)
         {

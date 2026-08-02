@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CasaHub.Application.DTOs.Auth;
 using CasaHub.Application.Interfaces.Security;
 using CasaHub.Domain.Entities;
 using Microsoft.Extensions.Options;
@@ -11,8 +12,10 @@ namespace CasaHub.Infrastructure.Authentication
     public class JwtTokenService(IOptions<JwtOptions> options) : ITokenService
     {
         private readonly JwtOptions _jwtOptions = options.Value;
-        public string GenerateToken(User user)
+        public TokenResponseDto GenerateToken(User user)
         {
+            var expires = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes);
+
             var claims = GetClaims(user);
 
             var credentials = GetSigningCredentials();
@@ -21,10 +24,14 @@ namespace CasaHub.Infrastructure.Authentication
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes),
+                expires: expires,
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new TokenResponseDto
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Expiration = expires
+            };
         }
 
         private static IEnumerable<Claim> GetClaims(User user)

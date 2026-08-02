@@ -16,5 +16,11 @@ namespace CasaHub.Infrastructure.Repositories
             email = email.Trim().ToLowerInvariant();
             return await _context.Users.AnyAsync(u => u.Email == email, cancellationToken);
         }
+
+        public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
+        {
+            email = email.Trim().ToLowerInvariant();
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email, cancellationToken);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaHub.API.Controllers
@@ -14,6 +15,13 @@ namespace CasaHub.API.Controllers
                 status = "API funcionando",
                 timestamp = DateTime.UtcNow
             });
+        }
+        
+        [Authorize]
+        [HttpGet("private")]
+        public IActionResult Private()
+        {
+            return Ok("JWT válido");
         }
     }
 }

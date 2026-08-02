@@ -15,8 +15,8 @@ namespace CasaHub.Domain.Entities
         public User(string name, string email, string passwordHash)
         {
             Id = Guid.NewGuid();
-            Name = name;
-            Email = email;
+            Name = name.Trim();
+            Email = email.Trim().ToLowerInvariant();
             PasswordHash = passwordHash;
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
@@ -24,8 +24,8 @@ namespace CasaHub.Domain.Entities
 
         public void Update(string name, string email)
         {
-            Name = name;
-            Email = email;
+            Name = name.Trim();
+            Email = email.Trim().ToLowerInvariant();
             UpdatedAt = DateTime.UtcNow;
         }
 

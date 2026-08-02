@@ -13,6 +13,7 @@ namespace CasaHub.Infrastructure.Repositories
 
         public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken)
         {
+            email = email.Trim().ToLowerInvariant();
             return await _context.Users.AnyAsync(u => u.Email == email, cancellationToken);
         }
     }

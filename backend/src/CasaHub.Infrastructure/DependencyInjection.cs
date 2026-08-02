@@ -1,7 +1,10 @@
 using System.Text;
-using CasaHub.Application.Contracts.Security;
+using CasaHub.Application.Interfaces.Repositories;
+using CasaHub.Application.Interfaces.Security;
 using CasaHub.Infrastructure.Authentication;
 using CasaHub.Infrastructure.Persistence;
+using CasaHub.Infrastructure.Repositories;
+using CasaHub.Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,9 +26,11 @@ namespace CasaHub.Infrastructure
 
             services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
 
-            services.AddAuthentication(configuration);
-
             services.AddScoped<ITokenService, JwtTokenService>();
+
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

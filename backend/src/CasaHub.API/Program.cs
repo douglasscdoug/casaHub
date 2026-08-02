@@ -1,5 +1,4 @@
-using CasaHub.API.Extensions;
-using CasaHub.Domain.Entities;
+using CasaHub.Application;
 using CasaHub.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 

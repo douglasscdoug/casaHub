@@ -1,7 +1,18 @@
+using CasaHub.API.Extensions;
 using CasaHub.Application;
 using CasaHub.Infrastructure;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "Logs/casahub-.log",
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 
@@ -19,6 +30,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseApiMiddlewares();
 
 app.UseAuthentication();
 

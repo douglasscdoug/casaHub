@@ -1,0 +1,145 @@
+<aside class="relative h-full shrink-0 border-r border-gray-200 bg-white transition-all duration-200"
+  [class.w-64]="!collapsed()" [class.w-20]="collapsed()">
+  <button type="button" class="absolute right-0 top-2 z-10
+           flex h-7 w-7 translate-x-1/2
+           items-center justify-center
+           rounded-full border border-gray-200
+           bg-white text-gray-500 shadow-sm
+           transition
+           hover:bg-gray-50 hover:text-primary" style="cursor: pointer;" (click)="toggle.emit()"
+    [attr.aria-label]="collapsed() ? 'Expandir menu' : 'Recolher menu'">
+    <fa-icon [icon]="collapsed() ? faChevronRight : faChevronLeft"></fa-icon>
+  </button>
+  <div class="flex h-full flex-col p-4">
+
+    <!-- Menu principal -->
+    <nav class="space-y-1">
+
+      <!-- Dashboard -->
+      <a routerLink="/dashboard" routerLinkActive="bg-primary/10 text-primary"
+        [routerLinkActiveOptions]="{ exact: true }" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Dashboard">
+        <fa-icon [icon]="faHouse" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Dashboard</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Dashboard
+        </span>
+        }
+      </a>
+
+
+      <!-- Finanças -->
+      <a routerLink="/financas" routerLinkActive="bg-primary/10 text-primary" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Finanças">
+        <fa-icon [icon]="faWallet" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Finanças</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Finanças
+        </span>
+        }
+      </a>
+
+
+      <!-- Compras -->
+      <a routerLink="/compras" routerLinkActive="bg-primary/10 text-primary" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Compras">
+        <fa-icon [icon]="faCartShopping" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Compras</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Compras
+        </span>
+        }
+      </a>
+
+
+      <!-- Tarefas -->
+      <a routerLink="/tarefas" routerLinkActive="bg-primary/10 text-primary" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Tarefas">
+        <fa-icon [icon]="faListCheck" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Tarefas</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Tarefas
+        </span>
+        }
+      </a>
+
+
+      <!-- Calendário -->
+      <a routerLink="/calendario" routerLinkActive="bg-primary/10 text-primary" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Calendário">
+        <fa-icon [icon]="faCalendarDays" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Calendário</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Calendário
+        </span>
+        }
+      </a>
+
+    </nav>
+
+
+    <!-- Configurações -->
+    <div class="mt-auto border-t border-gray-100 pt-4">
+
+      <a routerLink="/configuracoes" routerLinkActive="bg-primary/10 text-primary" class="group relative flex items-center rounded-lg px-3 py-2.5 text-gray-600
+               transition-colors hover:bg-gray-100 hover:text-primary" [class.justify-center]="collapsed()"
+        [class.gap-3]="!collapsed()" aria-label="Configurações">
+        <fa-icon [icon]="faGear" class="w-5"></fa-icon>
+        <span [class.hidden]="collapsed()">Configurações</span>
+        @if (collapsed()) {
+        <span class="pointer-events-none absolute left-full top-1/2 z-50
+           ml-3 -translate-y-1/2
+           whitespace-nowrap rounded-md
+           bg-gray-900 px-2.5 py-1.5
+           text-sm text-white shadow-md
+           opacity-0 transition-opacity duration-150
+           group-hover:opacity-100">
+          Configurações
+        </span>
+        }
+      </a>
+
+    </div>
+
+  </div>
+</aside>

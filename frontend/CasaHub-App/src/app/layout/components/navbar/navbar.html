@@ -1,0 +1,66 @@
+<nav class="h-16 border-b border-gray-200 bg-white">
+  <div class="flex h-full items-center justify-between px-6">
+
+    <!-- Logo / Nome -->
+    <div class="flex items-center gap-3">
+      <img src="/images/casaHub-logo.svg" alt="CasaHub" class="h-16 w-auto" />
+    </div>
+
+
+    <!-- Ações -->
+    <div class="flex items-center gap-4">
+
+      <!-- Notificações -->
+      <button type="button" class="relative rounded-full p-2 text-gray-500
+               transition hover:bg-gray-100 hover:text-primary" aria-label="Notificações" style="cursor: pointer;">
+        <fa-icon [icon]="faBell" class="text-primary"></fa-icon>
+
+        <!-- Indicador de notificação -->
+        <span class="absolute right-1.5 top-1.5
+                 h-2 w-2 rounded-full bg-red-500">
+        </span>
+      </button>
+
+
+      <!-- Perfil -->
+      <div class="user-menu relative">
+        <button type="button" class="flex items-center gap-2 rounded-lg px-2 py-1.5
+               transition hover:bg-gray-100" style="cursor: pointer;" (click)="toggleUserMenu()">
+
+          <!-- Avatar -->
+          <img src="/images/perfil.png" alt="Perfil do usuário" class="h-9 w-9 rounded-full object-cover" />
+
+          <!-- Nome -->
+          <span class="hidden text-sm font-medium text-gray-700 sm:block text-primary">
+            Douglas
+          </span>
+
+          <!-- Chevron -->
+          <fa-icon [icon]="faChevronDown" class="hidden text-sm text-gray-500 sm:block" [class.rotate-180]="isUserMenuOpen"></fa-icon>
+
+        </button>
+        @if (isUserMenuOpen) {
+        <div
+          class="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+          <a class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50"
+            (click)="isUserMenuOpen = false">
+            <fa-icon [icon]="faUser" class="w-4 text-gray-500"></fa-icon>
+
+            <span>Perfil</span>
+          </a>
+
+          <button type="button"
+            class="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50"
+            >
+            <fa-icon [icon]="faRightFromBracket" class="w-4 text-gray-500"></fa-icon>
+
+            <span>Sair</span>
+          </button>
+        </div>
+        }
+      </div>
+
+    </div>
+
+  </div>
+</nav>

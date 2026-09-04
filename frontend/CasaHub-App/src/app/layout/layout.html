@@ -1,0 +1,10 @@
+<app-navbar />
+
+<div class="flex min-h-[calc(100vh-4rem)]">
+  <app-sidebar [collapsed]="isSidebarCollapsed"
+  (toggle)="toggleSidebar()" />
+
+  <main class="flex-1 bg-gray-50 p-6">
+    <router-outlet />
+  </main>
+</div>

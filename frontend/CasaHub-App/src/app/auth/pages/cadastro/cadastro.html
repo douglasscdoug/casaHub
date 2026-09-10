@@ -1,0 +1,243 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-8">
+    <div class="w-full max-w-md">
+
+        <!-- Logo / título -->
+        <div class="text-center mb-8">
+            <img src="/images/casaHub-icon.svg" alt="CasaHub" class="h-16 w-16 mx-auto" />
+        </div>
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold text-gray-900">
+                Criar sua conta
+            </h2>
+
+            <p class="mt-2 text-sm text-gray-600">
+                Cadastre-se para começar a organizar sua casa.
+            </p>
+        </div>
+
+        <!-- Card -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+
+            <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" class="space-y-5">
+                <!-- Nome -->
+                <div>
+                    <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">
+                        Nome
+                    </label>
+                    <input id="nome" type="text" formControlName="name" autocomplete="name"
+                        placeholder="Digite seu nome" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-teal-600
+                   focus:border-teal-600" />
+
+                    @if (
+                    cadastroForm.controls.name.invalid &&
+                    (cadastroForm.controls.name.touched || cadastroForm.controls.name.dirty)
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        Informe seu nome.
+                    </p>
+                    }
+                </div>
+
+                <!-- E-mail -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                        E-mail
+                    </label>
+
+                    <input id="email" type="email" formControlName="email" autocomplete="email"
+                        placeholder="seu@email.com" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-teal-600
+                   focus:border-teal-600" />
+
+                    @if (
+                    cadastroForm.controls.email.hasError('required') &&
+                    (cadastroForm.controls.email.touched || cadastroForm.controls.email.dirty)
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        Informe seu e-mail.
+                    </p>
+                    }
+
+                    @if (
+                    cadastroForm.controls.email.hasError('email') &&
+                    !cadastroForm.controls.email.hasError('required') &&
+                    (cadastroForm.controls.email.touched || cadastroForm.controls.email.dirty)
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        Informe um e-mail válido.
+                    </p>
+                    }
+                </div>
+
+                <!-- Senha -->
+                <div>
+                    <label for="senha" class="block text-sm font-medium text-gray-700 mb-1">
+                        Senha
+                    </label>
+
+                    <input id="senha" type="password" formControlName="password" autocomplete="new-password"
+                        placeholder="Digite sua senha" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                            focus:outline-none focus:ring-2 focus:ring-teal-600
+                            focus:border-teal-600" (focus)="senhaEmFoco = true" (blur)="senhaEmFoco = false" />
+                    <!-- Requisitos da senha -->
+                    @if (
+                    cadastroForm.controls.password.touched &&
+                    cadastroForm.controls.password.hasError('required')
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        Informe sua senha.
+                    </p>
+                    }
+                    
+                    @if (cadastroForm.controls.password.value.length > 0 && (senhaEmFoco || formularioEnviado)) {
+                    <div class="mt-3 space-y-1.5">
+
+                        <p class="text-sm" [class.text-green-600]=" 
+                            !cadastroForm.controls.password.hasError('minlength')
+                            " [class.text-red-500]="
+                            cadastroForm.controls.password.hasError('minlength')
+                            ">
+                            @if (!cadastroForm.controls.password.hasError('minlength')) {
+                            ✓
+                            }
+
+                            Pelo menos 8 caracteres
+                        </p>
+
+                        <p class="text-sm" [class.text-green-600]="
+                            !cadastroForm.controls.password.hasError('passwordUppercase')
+                            " [class.text-red-500]="
+                            cadastroForm.controls.password.hasError('passwordUppercase')
+                            ">
+                            @if (!cadastroForm.controls.password.hasError('passwordUppercase')) {
+                            ✓
+                            }
+
+                            Uma letra maiúscula
+                        </p>
+
+                        <p class="text-sm" [class.text-green-600]="
+                            !cadastroForm.controls.password.hasError('passwordLowercase')
+                            " [class.text-red-500]="
+                            cadastroForm.controls.password.hasError('passwordLowercase')
+                            ">
+                            @if (!cadastroForm.controls.password.hasError('passwordLowercase')) {
+                            ✓
+                            }
+
+                            Uma letra minúscula
+                        </p>
+
+                        <p class="text-sm" [class.text-green-600]="
+                            !cadastroForm.controls.password.hasError('passwordNumber')
+                            " [class.text-red-500]="
+                            cadastroForm.controls.password.hasError('passwordNumber')
+                            ">
+                            @if (!cadastroForm.controls.password.hasError('passwordNumber')) {
+                            ✓
+                            }
+
+                            Um número
+                        </p>
+
+                        <p class="text-sm" [class.text-green-600]="
+                            !cadastroForm.controls.password.hasError('passwordSpecial')
+                            " [class.text-red-500]="
+                            cadastroForm.controls.password.hasError('passwordSpecial')
+                            ">
+                            @if (!cadastroForm.controls.password.hasError('passwordSpecial')) {
+                            ✓
+                            }
+
+                            Um caractere especial
+                        </p>
+
+                    </div>
+                    }
+
+                    @if (
+                    cadastroForm.controls.password.touched &&
+                    cadastroForm.controls.password.hasError('maxlength')
+                    ) {
+                    <p class="mt-2 text-sm text-red-600">
+                        A senha deve ter no máximo 100 caracteres.
+                    </p>
+                    }
+                </div>
+
+                <!-- Confirmar senha -->
+                <div>
+                    <label for="confirmarSenha" class="block text-sm font-medium text-gray-700 mb-1">
+                        Confirmar senha
+                    </label>
+
+                    <input id="confirmarSenha" type="password" formControlName="confirmPassword"
+                        autocomplete="new-password" placeholder="Digite sua senha novamente" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-teal-600
+                   focus:border-teal-600" />
+
+                    @if (
+                    cadastroForm.controls.confirmPassword.touched &&
+                    cadastroForm.controls.confirmPassword.hasError('required')
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        Confirme sua senha.
+                    </p>
+                    }
+
+                    @if (
+                    cadastroForm.controls.confirmPassword.value.length > 0 &&
+                    cadastroForm.hasError('fieldsMismatch')
+                    ) {
+                    <p class="mt-1 text-sm text-red-600">
+                        As senhas não coincidem.
+                    </p>
+                    }
+                </div>
+
+                @if (erroCadastro()) {
+                <div class="mb-5 flex items-center gap-2 text-sm text-red-600" role="alert">
+                    <span class="flex h-5 w-5 shrink-0 items-center justify-center
+             rounded-full border border-red-500 text-xs font-bold" aria-hidden="true">
+                        !
+                    </span>
+
+                    <span>{{ erroCadastro() }}</span>
+                </div>
+                }
+
+                <!-- Botão -->
+                <button type="submit" [disabled]="cadastroForm.invalid || cadastrando()" class="w-full rounded-lg bg-teal-700 px-4 py-2.5
+                    text-sm font-medium text-white
+                    hover:bg-teal-800
+                    focus:outline-none focus:ring-2 focus:ring-teal-600
+                    focus:ring-offset-2
+                    transition-colors
+                    cursor-pointer
+                    disabled:cursor-not-allowed
+                    disabled:opacity-50">
+                    @if (cadastrando()) {
+                    <span class="inline-block h-4 w-4 animate-spin rounded-full
+             border-2 border-white border-t-transparent
+             mr-2 align-middle"></span>
+
+                    Criando conta...
+                    } @else {
+                    Criar conta
+                    }
+                </button>
+
+            </form>
+
+            <!-- Login -->
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Já possui uma conta?
+                <a routerLink="/login" class="font-medium text-teal-700 hover:text-teal-800">
+                    Entrar
+                </a>
+            </p>
+
+        </div>
+    </div>
+</div>

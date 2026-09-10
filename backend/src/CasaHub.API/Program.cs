@@ -22,6 +22,20 @@ builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CasaHubPolicy", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:4200",
+                "https://casahub.seudominio.com"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -30,6 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("CasaHubPolicy");
 
 app.UseApiMiddlewares();
 

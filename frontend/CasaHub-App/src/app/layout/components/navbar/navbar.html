@@ -25,7 +25,7 @@
       <!-- Perfil -->
       <div class="user-menu relative">
         <button type="button" class="flex items-center gap-2 rounded-lg px-2 py-1.5
-               transition hover:bg-gray-100" style="cursor: pointer;" (click)="toggleUserMenu()">
+               transition hover:bg-gray-100 cursor-pointer" (click)="toggleUserMenu()">
 
           <!-- Avatar -->
           <img src="/images/perfil.png" alt="Perfil do usuário" class="h-9 w-9 rounded-full object-cover" />
@@ -50,7 +50,8 @@
           </a>
 
           <button type="button"
-            class="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50"
+            class="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50 cursor-pointer"
+            (click)="sair()"
             >
             <fa-icon [icon]="faRightFromBracket" class="w-4 text-gray-500"></fa-icon>
 

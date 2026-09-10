@@ -1,0 +1,137 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md">
+
+        <!-- Branding -->
+        <div class="text-center mb-8">
+            <img src="/images/casaHub-icon.svg" alt="CasaHub" class="h-16 w-16 mx-auto" />
+
+            <h1 class="mt-4 text-2xl font-semibold text-gray-900">
+                CasaHub
+            </h1>
+
+            <p class="mt-1 text-xs font-medium tracking-widest text-teal-700 uppercase">
+                Gestão inteligente do seu lar
+            </p>
+        </div>
+
+        <!-- Título -->
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold text-gray-900">
+                Entrar
+            </h2>
+
+            <p class="mt-2 text-sm text-gray-600">
+                Acesse sua conta para continuar.
+            </p>
+        </div>
+
+        @if (mensagemSucesso()) {
+        <div class="mb-5 flex items-center gap-2 text-sm text-green-600" role="status">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center
+                   rounded-full border border-green-500 text-xs font-bold" aria-hidden="true">
+                ✓
+            </span>
+
+            <span>{{ mensagemSucesso() }}</span>
+        </div>
+        }
+
+        <!-- Formulário -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+            class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+
+            <!-- E-mail -->
+            <div class="mb-5">
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                    E-mail
+                </label>
+
+                <input id="email" type="email" formControlName="email" autocomplete="email"
+                    placeholder="Digite seu e-mail" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                 focus:outline-none focus:ring-2 focus:ring-teal-600
+                 focus:border-teal-600" />
+
+                @if (
+                loginForm.controls.email.touched &&
+                loginForm.controls.email.hasError('required')
+                ) {
+                <p class="mt-1 text-sm text-red-600">
+                    Informe seu e-mail.
+                </p>
+                }
+
+                @if (
+                loginForm.controls.email.touched &&
+                loginForm.controls.email.hasError('email')
+                ) {
+                <p class="mt-1 text-sm text-red-600">
+                    Informe um e-mail válido.
+                </p>
+                }
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-6">
+                <label for="senha" class="block text-sm font-medium text-gray-700 mb-1">
+                    Senha
+                </label>
+
+                <input id="senha" type="password" formControlName="senha" autocomplete="current-password"
+                    placeholder="Digite sua senha" class="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm
+                 focus:outline-none focus:ring-2 focus:ring-teal-600
+                 focus:border-teal-600" />
+
+                @if (
+                loginForm.controls.senha.touched &&
+                loginForm.controls.senha.hasError('required')
+                ) {
+                <p class="mt-1 text-sm text-red-600">
+                    Informe sua senha.
+                </p>
+                }
+            </div>
+
+            @if (erroLogin()) {
+            <div class="mb-5 flex items-center gap-2 text-sm text-red-600" role="alert">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center
+             rounded-full border border-red-500 text-xs font-bold" aria-hidden="true">
+                    !
+                </span>
+
+                <span>{{ erroLogin() }}</span>
+            </div>
+            }
+
+            <!-- Botão -->
+            <button type="submit" [disabled]="loginForm.invalid || autenticando()" class="w-full rounded-lg bg-teal-700 px-4 py-2.5
+               text-sm font-medium text-white
+               hover:bg-teal-800
+               focus:outline-none focus:ring-2 focus:ring-teal-600
+               focus:ring-offset-2
+               transition-colors
+               cursor-pointer
+               disabled:cursor-not-allowed
+               disabled:opacity-50">
+                @if (autenticando()) {
+                <span class="inline-block h-4 w-4 animate-spin rounded-full
+                   border-2 border-white border-t-transparent
+                   mr-2 align-middle"></span>
+
+                Entrando...
+                } @else {
+                Entrar
+                }
+            </button>
+
+            <!-- Cadastro -->
+            <p class="mt-5 text-center text-sm text-gray-600">
+                Ainda não tem uma conta?
+
+                <a routerLink="/cadastro" class="font-medium text-teal-700 hover:text-teal-800 cursor-pointer">
+                    Cadastre-se
+                </a>
+            </p>
+
+        </form>
+    </div>
+</div>

@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faChevronDown, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../../auth/services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [FontAwesomeModule],
@@ -13,6 +15,9 @@ export class Navbar {
   protected readonly faChevronDown = faChevronDown;
   protected readonly faUser = faUser;
   protected readonly faRightFromBracket = faRightFromBracket;
+
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   isUserMenuOpen = false;
 
@@ -36,5 +41,10 @@ export class Navbar {
 
   closeUserMenu(): void {
     this.isUserMenuOpen = false;
+  }
+
+  sair(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
